@@ -3,6 +3,8 @@ import { useEffect } from "react";
 import { BsArrowDownRight } from "react-icons/bs";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { Particles } from "@tsparticles/react";
+
 
 const services = [
     {

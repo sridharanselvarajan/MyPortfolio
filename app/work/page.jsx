@@ -10,6 +10,7 @@ import { Tooltip,TooltipContent,TooltipProvider,TooltipTrigger } from "@/compone
 import Link from "next/link";
 import Image from "next/image";
 import WorkSliderBtns from "@/components/ui/WorkSliderBtns";
+import { Particles } from "@tsparticles/react";
 
 
 const projects = [

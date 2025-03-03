@@ -3,6 +3,8 @@
 import {FaHtml5, FaCss3, FaJs, FaReact,FaFigma, FaNodeJs,FaPython, FaC, FaJava } from 'react-icons/fa';
 
 import { SiTailwindcss, SiNextdotjs} from "react-icons/si";
+import { Particles } from "@tsparticles/react";
+
 
 const about = {
     title: "About Me",

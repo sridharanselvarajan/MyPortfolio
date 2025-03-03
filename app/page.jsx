@@ -7,7 +7,7 @@ import Photo from "@/components/ui/Photo";
 import Social from "@/components/Social";
 import { FiDownload } from "react-icons/fi";
 import Stats from "@/components/ui/Stats";
-import Particles from "react-tsparticles";
+import { Particles } from "@tsparticles/react";
 
 
 const Home = () => {
