@@ -35,6 +35,16 @@ const projects = [
         github:"https://github.com/sridharanselvarajan/crud-",
     },
     {
+        num:"03",
+        category:"Full Stack Developement",
+        title:"project 3",
+        description:"Safe and Economic hazardous waste disposal and recycling methodology",
+        stack: [{name:"Node.js"},{name:"react.js"}, {name: "MongoDB"},{name:"Express js"}],
+        image:"/assets/work/Waste.png",
+        live:"",
+        github:"https://github.com/sridharanselvarajan/green-loop-main",
+    },
+    {
         num: "03",
         category: "Frontend",
         title:"project 3",
@@ -54,7 +64,7 @@ const projects = [
         live: "",
         github:"https://github.com/sridharanselvarajan/crudbackend",
     },
-
+    
 ]
 
 

@@ -205,11 +205,25 @@ const events = {
     description: "Actively participated in various hackathons, tech fests, and AI/ML conferences, enhancing my skills and networking with like-minded individuals.",
     items: [
         {
+            name:"KEC-Hackathon 2k25",
+            photo:"/assets/resume/Kongu.jpg",
+            description:"​KEC Hackathon 2025 was a 30-hour national-level software hackathon held on March 10-11 at Kongu Engineering College, Perundurai, featuring themes like Social Good, Med Tech, Agri Tech, Green Tech, and Edu Tech, with a prize pool of ₹1 lakh. ",
+            participatedTime:"March 2025",
+            address:"Kongu Engineering College, Erode"
+        },
+        {
             name: "i-Cube 4.0 Hackathon",
             photo: "/assets/resume/icube4.0.jpg", // Add the correct path
             description: "iCUBE 4.0 is a 24-hour national-level hackathon by SVCE Science Club, fostering innovation through real-world problem-solving. We are proud to have won the Special Mention Award for our innovative and impactful solution.",
             participatedTime: "February 2025",
             address: "Sri Venkateshwara College of Engineering, Chennai."
+        },
+        {
+            name:"Code Fiesta (C-programming)",
+            photo:"/assets/resume/Code.jpg",
+            description:"Our team secured First Position in the Task Management System project at Code Fiesta 2024 held at Sri Eshwar College of Engineering, revolutionizing task management with an accessible, user-friendly, and efficient approach. ",
+            participatedTime:"April 2024",
+            address:"Sri Eshwar College of Engineering, Coimbatore"
         },
         {
             name: "Vynfest 2k25",
