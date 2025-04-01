@@ -1,15 +1,18 @@
 "use client";
 
-import {FaHtml5, FaCss3, FaJs, FaReact,FaFigma, FaNodeJs,FaPython, FaC, FaJava } from 'react-icons/fa';
-
-import { SiTailwindcss, SiNextdotjs} from "react-icons/si";
+import { FaHtml5, FaCss3, FaJs, FaReact, FaFigma, FaNodeJs, FaPython, FaC, FaJava } from 'react-icons/fa';
+import { SiTailwindcss, SiNextdotjs } from "react-icons/si";
 import { Particles } from "@tsparticles/react";
-
+import { loadSlim } from "@tsparticles/slim";
+import { useCallback } from "react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@radix-ui/react-tooltip';
+import { ScrollArea } from '@/components/ui/scroll-area';
+import { motion } from 'framer-motion';
 
 const about = {
     title: "About Me",
-    description: "Hi, I'm Sridharan Selvarajan, an Artificial Intelligence and Data Science student passionate about software development, AI, and full-stack technologies. With expertise in React Native, Java, Python, and MySQL, I enjoy building impactful projects that solve real-world problems. I have developed solutions like a Career Guidance System, Safe and Economic Hazardous Waste Disposal and Recycling Methodology, and a Content Recommendation System. Additionally, I have participated in hackathons like i-Cube 4.0 and Vynfest-2k25, constantly exploring AI, Generative AI, Power BI, and competitive coding. Let's connect and innovate together!",
-    
+    description: "Hi, I'm Sridharan Selvarajan, an Artificial Intelligence and Data Science student passionate about software development, AI, and full-stack technologies...",
     info: [
         { fieldname: "Full Name", fieldValue: "Sridharan Selvarajan" },
         { fieldname: "Phone", fieldValue: "+91 9345888109" },
@@ -19,10 +22,8 @@ const about = {
         { fieldname: "Education", fieldValue: "B.Tech - AI-DS" },
         { fieldname: "College", fieldValue: "Sri Eshwar College of Engineering" },
         { fieldname: "Languages", fieldValue: "Tamil, English, Hindi" },
-     // Add your GitHub link if available
     ]
-}
-
+};
 // experence data
 
 const experience = {
@@ -243,192 +244,257 @@ const events = {
 };
 
 
-import { Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs";
+const Resume = () => {
+    const particlesInit = useCallback(async (engine) => {
+        await loadSlim(engine);
+    }, []);
 
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger} from '@radix-ui/react-tooltip';
+    const particlesLoaded = useCallback(async (container) => {
+        await console.log(container);
+    }, []);
 
-import { ScrollArea } from '@/components/ui/scroll-area';
-
-import { motion } from 'framer-motion';
-
-
-const resume =() =>{
     return (
         <motion.div
-            initial={{ opacity: 0}}
+            initial={{ opacity: 0 }}
             animate={{
                 opacity: 1,
-                transition: { delay: 2.4, duration: 0.4, ease: "easeIn"},
+                transition: { delay: 0.4, duration: 0.4, ease: "easeIn" },
             }}
-            className="min-h-[80vh] flex items-center justify-center py-12 xl:py-0"
-            >
-                <div className="container mx-auto">
-                    <Tabs defaultValue="experience"
-                            className="flex flex-col xl:flex-row gap-[60px]">
-                        <TabsList className="flex flex-col w-full max-w-[380px] mx-auto xl:mx-0 gap-6">
-                            <TabsTrigger value="experience">Experience</TabsTrigger>
-                            <TabsTrigger value="education">Education</TabsTrigger>
-                            <TabsTrigger value="skills">Skills</TabsTrigger>
-                            <TabsTrigger value="certificates">Certificates</TabsTrigger>
-                            <TabsTrigger value="events">Events</TabsTrigger>
-                            <TabsTrigger value="about">About me</TabsTrigger>
-                        </TabsList>
+            className="min-h-[80vh] flex items-center justify-center py-12 xl:py-0 relative"
+        >
+            {/* Particles Background */}
+            <div className="absolute inset-0 -z-10">
+                <Particles
+                    id="tsparticles-resume"
+                    init={particlesInit}
+                    loaded={particlesLoaded}
+                    options={{
+                        background: {
+                            color: "#000000",
+                        },
+                        fpsLimit: 120,
+                        interactivity: {
+                            events: {
+                                onHover: {
+                                    enable: true,
+                                    mode: "grab",
+                                },
+                            },
+                            modes: {
+                                grab: {
+                                    distance: 140,
+                                    links: {
+                                        opacity: 1
+                                    }
+                                },
+                            },
+                        },
+                        particles: {
+                            color: {
+                                value: "#ffffff",
+                            },
+                            links: {
+                                color: "#ffffff",
+                                distance: 120,
+                                enable: true,
+                                opacity: 0.4,
+                                width: 1,
+                            },
+                            move: {
+                                direction: "none",
+                                enable: true,
+                                outModes: {
+                                    default: "bounce",
+                                },
+                                random: false,
+                                speed: 1,
+                                straight: false,
+                            },
+                            number: {
+                                density: {
+                                    enable: true,
+                                },
+                                value: 60,
+                            },
+                            opacity: {
+                                value: 0.5,
+                            },
+                            shape: {
+                                type: "circle",
+                            },
+                            size: {
+                                value: { min: 1, max: 3 },
+                            },
+                        },
+                        detectRetina: true,
+                    }}
+                />
+            </div>
 
-                        {/* content */}
-                        <div className="min-h-[70vh] w-full">
-                            <TabsContent value="experience" className="w-full">
-                                <div className="flex flex-col gap-[30px] text-center xl:text-left">
-                                    <h3 className="text-4xl font-bold">{experience.title}</h3>
-                                    <p className="max-w-[600px] text-white/60 mx-auto xl:mx-0">
-                                        {experience.description}
-                                    </p>
-                                    <ScrollArea className="h-[400px]">
-                                        <ul className="grid grid-cols-1 lg:grid-cols-2 gap-[30px]">
-                                            {experience.items.map((item, index) => {
-                                                return (
-                                                    <li 
-                                                    key={index} 
-                                                    className="bg-[#232329] h-[184px] py-6 px-10 rounded-xl flex flex-col justify-center items-center lg:items-start gap-1"
-                                                    >
-                                                        <span className="text-accent">{item.duration}</span>
-                                                        <h3 className="text-xl max-w-[260px] min-h-[60px] text-center lg:text-left">{item.position}</h3>
-                                                        <div className="flex items-center gap-3">
-                                                            {/* dot */}
-                                                            <span className="w-[6px] h-[6px] rounded-full bg-accent"></span>
-                                                            <p className="text-white/60">{item.college}</p>
-                                                        </div>
-                                                    </li>
-                                                )
-                                            })}
-                                        </ul>
-                                    </ScrollArea>
-                                </div>
-                            </TabsContent>
+            <div className="container mx-auto relative z-10">
+                <Tabs defaultValue="experience" className="flex flex-col xl:flex-row gap-[60px]">
+                    <TabsList className="flex flex-col w-full max-w-[380px] mx-auto xl:mx-0 gap-6">
+                        <TabsTrigger value="experience">Experience</TabsTrigger>
+                        <TabsTrigger value="education">Education</TabsTrigger>
+                        <TabsTrigger value="skills">Skills</TabsTrigger>
+                        <TabsTrigger value="certificates">Certificates</TabsTrigger>
+                        <TabsTrigger value="events">Events</TabsTrigger>
+                        <TabsTrigger value="about">About me</TabsTrigger>
+                    </TabsList>
 
-                            <TabsContent value="education" className="w-full h-[600px]"> 
-                                <div className="flex flex-col gap-6 text-center xl:text-left">
-                                    <h3 className="text-4xl font-bold">{education.title}</h3>
-                                    <p className="max-w-[600px] text-white/60 mx-auto xl:mx-0">
-                                        {education.description}
-                                    </p>
-                                    <ScrollArea className="h-[500px]"> {/* Increased height */}
-                                        <ul className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                            {education.items.map((item, index) => (
-                                                <li 
-                                                    key={index} 
-                                                    className="bg-[#232329] min-h-[200px] py-8 px-8 rounded-xl flex flex-col justify-between items-start"
-                                                >
-                                                    <span className="text-accent font-semibold">{item.duration}</span>
-                                                    <h3 className="text-lg font-bold">{item.degree}</h3>
-                                                    <div className="flex items-center gap-2">
-                                                        <span className="w-2 h-2 rounded-full bg-accent"></span>
-                                                        <p className="text-white/60">{item.college}</p>
-                                                    </div>
-                                                    
-                                                    {item.cgpa && <p className="text-white/60">CGPA: {item.cgpa}</p>}
-                                                    {item.result && <p className="text-white/60">Result: {item.result}</p>}
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    </ScrollArea>
-                                </div>
-                            </TabsContent>
-
-
-
-                            <TabsContent value="skills" className="w-full">
-                                <div className="flex flex-col gap-[30px]">
-                                    <div className="flex flex-col gap-[30px] text-center xl:text-left">
-                                        <h3 className="text-4xl font-bold">{skills.title}</h3>
-                                        <p className="max-w-[600px] text-white/60 mx-auto xl:mx-0">
-                                            {skills.description}
-                                        </p>
-                                    </div>
-                                    <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 xl:gap-[30px]">
-                                        {skills.skillList.map((skill, index) => {
-                                            return (
-                                                <li key={index}>
-                                                    <TooltipProvider delayDuration={100}>
-                                                        <Tooltip>
-                                                            <TooltipTrigger className="w-full h-[150px] bg-[#232329] rounded-xl flex justify-center items-center group">
-                                                                <div className="text-6xl group-hover:text-accent transition-all duration-300" >{skill.icon}</div>
-                                                            </TooltipTrigger>
-                                                            <TooltipContent>
-                                                                <p className="capitalize">{skill.name}</p>
-                                                            </TooltipContent>
-                                                        </Tooltip>
-                                                    </TooltipProvider>
-                                                </li>
-                                            )
-                                        })}
-                                    </ul>
-                                </div>
-                            </TabsContent>
-
-                            <TabsContent value="certificates" className="w-full h-[600px]">
-                                <div className="flex flex-col gap-6 text-center xl:text-left">
-                                    <h3 className="text-4xl font-bold">{certifications.title}</h3>
-                                    <p className="max-w-[600px] text-white/60 mx-auto xl:mx-0">
-                                        {certifications.description}
-                                    </p>
-                                    <ScrollArea className="h-[500px]"> {/* Increased height */}
-                                        <ul className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                            {certifications.items.map((cert, index) => (
-                                                <li 
-                                                    key={index} 
-                                                    className="bg-[#232329] min-h-[200px] py-8 px-8 rounded-xl flex flex-col justify-between items-start"
-                                                >
-                                                    <h3 className="text-lg font-bold">{cert.name}</h3>
-                                                    <div className="flex items-center gap-2">
-                                                        <span className="w-2 h-2 rounded-full bg-accent"></span>
-                                                        <p className="text-white/60">{cert.provider} - {cert.year}</p>
-                                                    </div>
-                                                    <a  
-                                                        href={cert.link}  
-                                                        target="_blank"  
-                                                        rel="noopener noreferrer"  
-                                                        className="flex items-center gap-2 px-4 py-2 border-2 border-accent rounded-full text-accent hover:bg-accent hover:text-black transition-all duration-300 uppercase text-sm"
-                                                        >  
-                                                        View Certificate  
-                                                        </a>
-
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    </ScrollArea>
-                                </div>
-                            </TabsContent>
-
-                            <TabsContent value="about" className="w-full text-center xl:text-left">
-                                <div className="flex flex-col gap-[30px]">
-                                    <h3 className="text-4xl font-bold">{about.title}</h3>
-                                    <p className="max-w-[600px] text-white/60 mx-auto xl:mx-0">{about.description}</p>
-                                    
-                                    {/* Grid Layout for Proper Alignment */}
-                                    <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-4 max-w-[700px] mx-auto xl:mx-0">
-                                        {about.info.map((item, index) => (
-                                            <li key={index} className="grid grid-cols-2 items-center">
-                                                <span className="text-white/60 font-semibold">{item.fieldname}:</span>
-                                                <span className="text-xl text-white font-medium">{item.fieldValue}</span>
+                    {/* Content */}
+                    <div className="min-h-[70vh] w-full">
+                        {/* Experience Tab */}
+                        <TabsContent value="experience" className="w-full">
+                            <div className="flex flex-col gap-[30px] text-center xl:text-left">
+                                <h3 className="text-4xl font-bold">{experience.title}</h3>
+                                <p className="max-w-[600px] text-white/60 mx-auto xl:mx-0">
+                                    {experience.description}
+                                </p>
+                                <ScrollArea className="h-[400px]">
+                                    <ul className="grid grid-cols-1 lg:grid-cols-2 gap-[30px]">
+                                        {experience.items.map((item, index) => (
+                                            <li 
+                                                key={index} 
+                                                className="bg-[#232329] h-[184px] py-6 px-10 rounded-xl flex flex-col justify-center items-center lg:items-start gap-1 backdrop-blur-sm bg-opacity-80"
+                                            >
+                                                <span className="text-accent">{item.duration}</span>
+                                                <h3 className="text-xl max-w-[260px] min-h-[60px] text-center lg:text-left">{item.position}</h3>
+                                                <div className="flex items-center gap-3">
+                                                    <span className="w-[6px] h-[6px] rounded-full bg-accent"></span>
+                                                    <p className="text-white/60">{item.college}</p>
+                                                </div>
                                             </li>
                                         ))}
                                     </ul>
+                                </ScrollArea>
+                            </div>
+                        </TabsContent>
+
+                        {/* Education Tab */}
+                        <TabsContent value="education" className="w-full h-[600px]">
+                            <div className="flex flex-col gap-6 text-center xl:text-left">
+                                <h3 className="text-4xl font-bold">{education.title}</h3>
+                                <p className="max-w-[600px] text-white/60 mx-auto xl:mx-0">
+                                    {education.description}
+                                </p>
+                                <ScrollArea className="h-[500px]">
+                                    <ul className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        {education.items.map((item, index) => (
+                                            <li 
+                                                key={index} 
+                                                className="bg-[#232329] min-h-[200px] py-8 px-8 rounded-xl flex flex-col justify-between items-start backdrop-blur-sm bg-opacity-80"
+                                            >
+                                                <span className="text-accent font-semibold">{item.duration}</span>
+                                                <h3 className="text-lg font-bold">{item.degree}</h3>
+                                                <div className="flex items-center gap-2">
+                                                    <span className="w-2 h-2 rounded-full bg-accent"></span>
+                                                    <p className="text-white/60">{item.college}</p>
+                                                </div>
+                                                {item.cgpa && <p className="text-white/60">CGPA: {item.cgpa}</p>}
+                                                {item.result && <p className="text-white/60">Result: {item.result}</p>}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </ScrollArea>
+                            </div>
+                        </TabsContent>
+
+                        {/* Skills Tab */}
+                        <TabsContent value="skills" className="w-full">
+                            <div className="flex flex-col gap-[30px]">
+                                <div className="flex flex-col gap-[30px] text-center xl:text-left">
+                                    <h3 className="text-4xl font-bold">{skills.title}</h3>
+                                    <p className="max-w-[600px] text-white/60 mx-auto xl:mx-0">
+                                        {skills.description}
+                                    </p>
                                 </div>
-                            </TabsContent>
+                                <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 xl:gap-[30px]">
+                                    {skills.skillList.map((skill, index) => (
+                                        <li key={index}>
+                                            <TooltipProvider delayDuration={100}>
+                                                <Tooltip>
+                                                    <TooltipTrigger className="w-full h-[150px] bg-[#232329] rounded-xl flex justify-center items-center group backdrop-blur-sm bg-opacity-80">
+                                                        <div className="text-6xl group-hover:text-accent transition-all duration-300">
+                                                            {skill.icon}
+                                                        </div>
+                                                    </TooltipTrigger>
+                                                    <TooltipContent>
+                                                        <p className="capitalize">{skill.name}</p>
+                                                    </TooltipContent>
+                                                </Tooltip>
+                                            </TooltipProvider>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        </TabsContent>
 
+                        {/* Certificates Tab */}
+                        <TabsContent value="certificates" className="w-full h-[600px]">
+                            <div className="flex flex-col gap-6 text-center xl:text-left">
+                                <h3 className="text-4xl font-bold">{certifications.title}</h3>
+                                <p className="max-w-[600px] text-white/60 mx-auto xl:mx-0">
+                                    {certifications.description}
+                                </p>
+                                <ScrollArea className="h-[500px]">
+                                    <ul className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        {certifications.items.map((cert, index) => (
+                                            <li 
+                                                key={index} 
+                                                className="bg-[#232329] min-h-[200px] py-8 px-8 rounded-xl flex flex-col justify-between items-start backdrop-blur-sm bg-opacity-80"
+                                            >
+                                                <h3 className="text-lg font-bold">{cert.name}</h3>
+                                                <div className="flex items-center gap-2">
+                                                    <span className="w-2 h-2 rounded-full bg-accent"></span>
+                                                    <p className="text-white/60">{cert.provider} - {cert.year}</p>
+                                                </div>
+                                                <a
+                                                    href={cert.link}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="flex items-center gap-2 px-4 py-2 border-2 border-accent rounded-full text-accent hover:bg-accent hover:text-black transition-all duration-300 uppercase text-sm"
+                                                >
+                                                    View Certificate
+                                                </a>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </ScrollArea>
+                            </div>
+                        </TabsContent>
 
-                            <TabsContent value="events" className="w-full h-[600px]">
+                        {/* About Tab */}
+                        <TabsContent value="about" className="w-full text-center xl:text-left">
+                            <div className="flex flex-col gap-[30px] backdrop-blur-sm bg-opacity-80 p-6 rounded-xl">
+                                <h3 className="text-4xl font-bold">{about.title}</h3>
+                                <p className="max-w-[600px] text-white/60 mx-auto xl:mx-0">
+                                    {about.description}
+                                </p>
+                                <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-4 max-w-[700px] mx-auto xl:mx-0">
+                                    {about.info.map((item, index) => (
+                                        <li key={index} className="grid grid-cols-2 items-center">
+                                            <span className="text-white/60 font-semibold">{item.fieldname}:</span>
+                                            <span className="text-xl text-white font-medium">{item.fieldValue}</span>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        </TabsContent>
+
+                        {/* Events Tab */}
+                        <TabsContent value="events" className="w-full h-[600px]">
                             <div className="flex flex-col gap-6 text-center xl:text-left">
                                 <h3 className="text-4xl font-bold">{events.title}</h3>
                                 <p className="max-w-[600px] text-white/60 mx-auto xl:mx-0">
                                     {events.description}
                                 </p>
-                                <ScrollArea className="h-[500px]"> {/* Increased height for scrolling */}
+                                <ScrollArea className="h-[500px]">
                                     <ul className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                         {events.items.map((event, index) => (
                                             <li 
                                                 key={index} 
-                                                className="bg-[#232329] min-h-[250px] py-8 px-8 rounded-xl flex flex-col justify-between items-start"
+                                                className="bg-[#232329] min-h-[250px] py-8 px-8 rounded-xl flex flex-col justify-between items-start backdrop-blur-sm bg-opacity-80"
                                             >
                                                 <img 
                                                     src={event.photo} 
@@ -447,11 +513,11 @@ const resume =() =>{
                                 </ScrollArea>
                             </div>
                         </TabsContent>
+                    </div>
+                </Tabs>
+            </div>
+        </motion.div>
+    );
+};
 
-                        </div>
-                    </Tabs>
-                </div>
-            </motion.div>
-    )
-}
-export default resume;
+export default Resume;

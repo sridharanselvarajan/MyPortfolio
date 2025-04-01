@@ -1,11 +1,11 @@
     "use client";
 
-    import { useEffect, useState } from "react";
+    import { useEffect, useState, useCallback } from "react";
     import { Button } from "@/components/ui/button";
     import { Input } from "@/components/ui/input";
     import { Textarea } from "@/components/ui/textarea";
     import { Particles } from "@tsparticles/react";
-
+    import { loadSlim } from "@tsparticles/slim"; // or loadFull for more features
 
     import {
     Select,
@@ -19,14 +19,26 @@
 
     import { FaPhoneAlt, FaEnvelope, FaMapMarkedAlt } from "react-icons/fa";
     import { motion } from "framer-motion";
-
     import emailjs from "@emailjs/browser";
 
+    const Contact = () => {
+    const [mounted, setMounted] = useState(false);
+    const [selectedService, setSelectedService] = useState("");
+
+    // Particles initialization
+    const particlesInit = useCallback(async (engine) => {
+        await loadSlim(engine);
+    }, []);
+
+    const particlesLoaded = useCallback(async (container) => {
+        await console.log(container);
+    }, []);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-    
-        emailjs.sendForm(
+
+        emailjs
+        .sendForm(
             "service_jwu0v2s",
             "template_skp9xfl",
             e.target,
@@ -41,17 +53,10 @@
             alert("Failed to send message.");
         });
     };
-    
-
-    const Contact = () => {
-    const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
         setMounted(true);
     }, []);
-    const [service, setService] = useState("");
-
-    const [selectedService, setSelectedService] = useState("");
 
     const info = [
         {
@@ -71,7 +76,7 @@
         },
     ];
 
-    if (!mounted) return null; // Prevents hydration mismatch
+    if (!mounted) return null;
 
     return (
         <motion.section
@@ -80,28 +85,107 @@
             opacity: 1,
             transition: { delay: 0.4, duration: 0.4, ease: "easeIn" },
         }}
-        className="py-6"
+        className="py-6 relative"
         >
-        <div className="container mx-auto">
+        {/* Particles Background */}
+        <div className="absolute inset-0 -z-10">
+            <Particles
+            id="tsparticles"
+            init={particlesInit}
+            loaded={particlesLoaded}
+            options={{
+                background: {
+                color: "#000000",
+                },
+                fpsLimit: 120,
+                interactivity: {
+                events: {
+                    onClick: {
+                    enable: true,
+                    mode: "push",
+                    },
+                    onHover: {
+                    enable: true,
+                    mode: "repulse",
+                    },
+                },
+                modes: {
+                    push: {
+                    quantity: 4,
+                    },
+                    repulse: {
+                    distance: 100,
+                    duration: 0.4,
+                    },
+                },
+                },
+                particles: {
+                color: {
+                    value: "#ffffff",
+                },
+                links: {
+                    color: "#ffffff",
+                    distance: 150,
+                    enable: true,
+                    opacity: 0.3,
+                    width: 1,
+                },
+                move: {
+                    direction: "none",
+                    enable: true,
+                    outModes: {
+                    default: "bounce",
+                    },
+                    random: false,
+                    speed: 2,
+                    straight: false,
+                },
+                number: {
+                    density: {
+                    enable: true,
+                    },
+                    value: 50,
+                },
+                opacity: {
+                    value: 0.5,
+                },
+                shape: {
+                    type: "circle",
+                },
+                size: {
+                    value: { min: 1, max: 3 },
+                },
+                },
+                detectRetina: true,
+            }}
+            />
+        </div>
+
+        <div className="container mx-auto relative z-10">
             <div className="flex flex-col xl:flex-row gap-8">
             <div className="xl:w-1/2 order-2 xl:order-none">
-                <form onSubmit={handleSubmit}  className="flex flex-col gap-6 p-10 bg-[#272727] rounded-xl">
+                <form
+                onSubmit={handleSubmit}
+                className="flex flex-col gap-6 p-10 bg-[#272727] rounded-xl backdrop-blur-sm bg-opacity-80"
+                >
                 <h3 className="text-4xl text-accent">Let's work together</h3>
                 <p className="text-white/60">
-                    Got an exciting project in mind? Let's bring it to life! Whether you have a question, collaboration idea, or just want to say hello, feel free to drop me a message. I'll get back to you as soon as possible!
+                    Got an exciting project in mind? Let's bring it to life! Whether you have a question,
+                    collaboration idea, or just want to say hello, feel free to drop me a message. I'll
+                    get back to you as soon as possible!
                 </p>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <Input type="text" name="first_name"  placeholder="First Name" />
-                    <Input type="text" name="last_name"  placeholder="Last Name" />
-                    <Input type="email" name="email"  placeholder="Email address" />
-                    <Input type="tel" name="phone"  placeholder="Phone number" />
+                    <Input type="text" name="first_name" placeholder="First Name" />
+                    <Input type="text" name="last_name" placeholder="Last Name" />
+                    <Input type="email" name="email" placeholder="Email address" />
+                    <Input type="tel" name="phone" placeholder="Phone number" />
                 </div>
                 <Select onValueChange={(value) => setSelectedService(value)}>
-                <SelectTrigger className="w-full">
+                    <SelectTrigger className="w-full">
                     <SelectValue placeholder="Select a service" />
-                </SelectTrigger>
-                <SelectContent>
+                    </SelectTrigger>
+                    <SelectContent>
                     <SelectGroup>
                         <SelectLabel>Services</SelectLabel>
                         <SelectItem value="web-dev">Web Development</SelectItem>
@@ -118,17 +202,14 @@
                         <SelectItem value="ar-vr">AR/VR Development</SelectItem>
                         <SelectItem value="embedded-systems">Embedded Systems</SelectItem>
                     </SelectGroup>
-                </SelectContent>
-            </Select>
+                    </SelectContent>
+                </Select>
 
-            {/* Hidden input to send the selected service via EmailJS */}
-            <input type="hidden" name="service" value={selectedService} />
+                <input type="hidden" name="service" value={selectedService} />
 
                 <Textarea className="h-[200px]" name="message" placeholder="Type your message here" />
 
-                <Button className="max-w-40">
-                    Send Message
-                </Button>
+                <Button className="max-w-40">Send Message</Button>
                 </form>
             </div>
 

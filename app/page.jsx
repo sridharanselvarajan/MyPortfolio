@@ -1,68 +1,20 @@
-// pages/index.js
 "use client";
-
-import { useEffect } from "react";
+import { useCallback } from "react";
 import Head from "next/head";
 import Photo from "@/components/ui/Photo";
 import Social from "@/components/Social";
 import { FiDownload } from "react-icons/fi";
 import Stats from "@/components/ui/Stats";
-import { Particles } from "@tsparticles/react";
-
+import Particles from "@tsparticles/react";
+import { loadSlim } from "@tsparticles/slim";
 
 const Home = () => {
-  useEffect(() => {
-    const loadParticles = async () => {
-      await import("particles.js");
-      window.particlesJS("particles-js", {
-        particles: {
-          number: {
-            value: 150,
-            density: {
-              enable: true,
-              value_area: 1000,
-            },
-          },
-          color: { value: "#ffffff" },
-          shape: {
-            type: "circle",
-            stroke: { width: 0, color: "#000000" },
-          },
-          opacity: { value: 0.5, random: false },
-          size: { value: 2, random: true },
-          line_linked: {
-            enable: true,
-            distance: 150,
-            color: "#90ee90", // Light Green
-            opacity: 0.4,
-            width: 1,
-          },
-          move: {
-            enable: true,
-            speed: 2,
-            direction: "none",
-            random: false,
-            straight: false,
-            out_mode: "out",
-          },
-        },
-        interactivity: {
-          detect_on: "canvas",
-          events: {
-            onhover: { enable: true, mode: "grab" },
-            onclick: { enable: true, mode: "push" },
-          },
-          modes: {
-            grab: {
-              distance: 200,
-              line_linked: { opacity: 1 },
-            },
-          },
-        },
-        retina_detect: true,
-      });
-    };
-    loadParticles();
+  const particlesInit = useCallback(async (engine) => {
+    await loadSlim(engine);
+  }, []);
+
+  const particlesLoaded = useCallback(async (container) => {
+    await console.log(container);
   }, []);
 
   const handleDownload = () => {
@@ -77,9 +29,76 @@ const Home = () => {
   return (
     <>
       <Head>
-        <title>Background Lines</title>
+        <title>Sridharan Selvarajan - Full Stack Developer</title>
       </Head>
-      <div id="particles-js" style={styles.particles}></div>
+      
+      {/* Particles Background */}
+      <Particles
+        id="tsparticles-home"
+        init={particlesInit}
+        loaded={particlesLoaded}
+        options={{
+          fullScreen: {
+            enable: true,
+            zIndex: -1
+          },
+          particles: {
+            number: {
+              value: 150,
+              density: {
+                enable: true,
+                value_area: 1000,
+              },
+            },
+            color: { value: "#ffffff" },
+            shape: {
+              type: "circle",
+            },
+            opacity: { value: 0.5, random: false },
+            size: { value: 2, random: true },
+            links: {
+              enable: true,
+              distance: 150,
+              color: "#90ee90",
+              opacity: 0.4,
+              width: 1,
+            },
+            move: {
+              enable: true,
+              speed: 2,
+              direction: "none",
+              random: false,
+              straight: false,
+              outModes: "out",
+            },
+          },
+          interactivity: {
+            events: {
+              onHover: {
+                enable: true,
+                mode: "grab",
+              },
+              onClick: {
+                enable: true,
+                mode: "push",
+              },
+            },
+            modes: {
+              grab: {
+                distance: 200,
+                links: {
+                  opacity: 1,
+                },
+              },
+              push: {
+                quantity: 4,
+              },
+            },
+          },
+          retina_detect: true,
+        }}
+      />
+
       <section className="h-full relative z-10">
         <div className="container mx-auto h-full">
           <div className="flex flex-col xl:flex-row items-center justify-between xl:pt-8 xl:pb-24">
@@ -116,15 +135,6 @@ const Home = () => {
       </section>
     </>
   );
-};
-
-const styles = {
-  particles: {
-    position: "fixed",
-    width: "100%",
-    height: "100%",
-    zIndex: -1,
-  },
 };
 
 export default Home;
