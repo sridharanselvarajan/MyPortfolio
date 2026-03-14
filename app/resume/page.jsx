@@ -1,7 +1,7 @@
 "use client";
 
 import { FaHtml5, FaCss3, FaJs, FaReact, FaFigma, FaNodeJs, FaPython, FaC, FaJava } from 'react-icons/fa';
-import { SiTailwindcss, SiNextdotjs } from "react-icons/si";
+import { SiTailwindcss, SiNextdotjs, SiMongodb, SiDjango, SiSupabase, SiFirebase, SiExpress, SiCplusplus } from "react-icons/si";
 import { Particles } from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim";
 import { useCallback } from "react";
@@ -9,6 +9,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@radix-ui/react-tooltip';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { motion } from 'framer-motion';
+import Image from "next/image";
 
 const about = {
     title: "About Me",
@@ -29,35 +30,19 @@ const about = {
 const experience = {
     icon: '/assets/resume/badge.svg',
     title:'My Experience',
-    description: " Worked on React Native, Java, Python, and full-stack development, building projects like a Career Guidance System, Safe and economic hazardous waste disposal and recycling methodology, and Content Recommendation System. Participated in multiple hackathons events and tech competitions, gaining hands-on experience in AI, Generative AI, Power BI, and competitive coding",
+    description: "Worked on full-stack web applications using MERN, Next.js, and Django. Gained practical experience in debugging, API development, and deployment. Also experienced in AI, Generative AI, Power BI, and competitive coding.",
     items: [
         {
-            college:"Sri Eshwar college of Engineering",
-            position:"Web Developer",
-            duration:"2023-present",
+            company: "Connect Training Solutions",
+            position: "Modern Full Stack Developer Intern",
+            duration: "2025",
+            certificate: "/assets/resume/connect.jpg", // Paste your certificate link here
         },
         {
-            college:"Sri Eshwar college of Engineering",
-            position:"Full Stack Developer",
-            duration:"2023-present",
-        }, {
-            college:"Sri Eshwar college of Engineering",
-            position:"Machine Learning Engineer",
-            duration:"2023-present",
-        }, {
-            college:"Sri Eshwar college of Engineering",
-            position:"Data Scientist ",
-            duration:"2023-present",
-        },
-        {
-            college:"Sri Eshwar college of Engineering",
-            position:"AI - Engineer ",
-            duration:"2023-present",
-        },
-        {
-            college:"Sri Eshwar college of Engineering",
-            position:"Cloud Engineer ",
-            duration:"2023-present",
+            company: "Lysa Solutions",
+            position: "Full Stack Developer Intern",
+            duration: "2025",
+            certificate: "/assets/resume/Lysa.png", // Paste your certificate link here
         }
     ]
 }
@@ -72,7 +57,7 @@ const education = {
             college: "Sri Eshwar College of Engineering",
             degree: "B.Tech AI-DS",
             duration: "2023 - 2027",
-            cgpa: " 8.81 (upto 2nd semester)",
+            cgpa: " 8.68 (upto 5th semester)",
         },
         {
             college: "Venus Matric Higher Seccondary School",
@@ -84,7 +69,7 @@ const education = {
             college: "Venus Matric Higher Secondary School",
             degree: "Secondary School (SSLC)",
             duration: "2020 - 2021",
-            result: "100%",
+            result: "91.6%",
         },
     ]
 };
@@ -159,44 +144,56 @@ const certifications = {
 
 const skills  = {
     title: "My Skills",
-    description: "I am proficient in HTML, CSS, JavaScript, React, React Native, Node.js with Express, MongoDB, C, C++, Java, and Python. He specializes in full-stack development and AI-driven solutions, building innovative and scalable applications.",
+    description: "Proficient in modern full-stack technologies and AI-driven solutions. Experienced with React, Next.js, Node.js, Python, MongoDB, Django, and Supabase. Also skilled in Java, C++, and machine learning tools like YOLOv8.",
     skillList: [
         {
-            icon: <FaHtml5 />,
-            name: "html5",
+            icon: <FaReact />,
+            name: "React & Native"
         },
         {
-            icon:<FaCss3 />,
-            name: "css 3"
+            icon: <SiNextdotjs />,
+            name: "Next.js"
         },
         {
-            icon:<FaJs />,
-            name: "Javascript"
-        },
-        {
-            icon:<FaReact />,
-            name: "React.js"
-        },
-        {
-            icon:<SiNextdotjs />,
-            name: "next.js"
-        },
-        {
-            icon:<SiTailwindcss />,
-            name: "tailwind.css"
-        },
-        {
-            icon:<FaNodeJs />,
+            icon: <FaNodeJs />,
             name: "Node.js"
         },
         {
-            icon:<FaPython />,
+            icon: <SiExpress />,
+            name: "Express.js"
+        },
+        {
+            icon: <SiMongodb />,
+            name: "MongoDB"
+        },
+        {
+            icon: <FaPython />,
             name: "Python"
         },
         {
-            icon:<FaJava />,
-            name: "Java Programming"
+            icon: <SiDjango />,
+            name: "Django"
         },
+        {
+            icon: <SiSupabase />,
+            name: "Supabase"
+        },
+        {
+            icon: <FaJava />,
+            name: "Java"
+        },
+        {
+            icon: <SiCplusplus />,
+            name: "C / C++"
+        },
+        {
+            icon: <FaJs />,
+            name: "JavaScript"
+        },
+        {
+            icon: <SiTailwindcss />,
+            name: "Tailwind CSS"
+        }
     ]
 }
 
@@ -356,14 +353,25 @@ const Resume = () => {
                                         {experience.items.map((item, index) => (
                                             <li 
                                                 key={index} 
-                                                className="bg-[#232329] h-[184px] py-6 px-10 rounded-xl flex flex-col justify-center items-center lg:items-start gap-1 backdrop-blur-sm bg-opacity-80"
+                                                className="bg-[#232329] min-h-[184px] py-6 px-10 rounded-xl flex flex-col justify-center items-center lg:items-start gap-1 backdrop-blur-sm bg-opacity-80 relative"
                                             >
                                                 <span className="text-accent">{item.duration}</span>
                                                 <h3 className="text-xl max-w-[260px] min-h-[60px] text-center lg:text-left">{item.position}</h3>
                                                 <div className="flex items-center gap-3">
                                                     <span className="w-[6px] h-[6px] rounded-full bg-accent"></span>
-                                                    <p className="text-white/60">{item.college}</p>
+                                                    <p className="text-white/60">{item.company}</p>
                                                 </div>
+                                                {item.certificate && (
+                                                    <div className="mt-4 w-full h-[200px] relative rounded-xl overflow-hidden group/cert border border-white/10 hover:border-accent/50 transition-colors duration-300">
+                                                        <Image 
+                                                            src={item.certificate} 
+                                                            alt={`${item.company} Certificate`}
+                                                            fill
+                                                            className="object-cover opacity-80 group-hover/cert:opacity-100 transition-opacity duration-300"
+                                                        />
+                                                        <div className="absolute inset-0 bg-black/40 group-hover/cert:bg-transparent transition-colors duration-300"></div>
+                                                    </div>
+                                                )}
                                             </li>
                                         ))}
                                     </ul>
