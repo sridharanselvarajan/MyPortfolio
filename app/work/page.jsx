@@ -65,7 +65,7 @@ const projects = [
     {
         num: "06",
         category: "Machine Learning",
-        title:"Image Recognition for wildlife conservation",
+        title:"Image Recognition for wildlife conservation (Submitted to IEEE Conference)",
         description:"An AI-powered system that uses YOLOv8 and image processing techniques to automatically detect and recognize wildlife species from images to support conservation and monitoring efforts. 🌿🦌",
         stack: [{name:"YOLO v8"},{name:"Image Processing"}],
         image:"/assets/work/Image.png",
